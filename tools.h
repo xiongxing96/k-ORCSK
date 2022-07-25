@@ -1,6 +1,6 @@
 #ifndef TOOLS_H
 #define TOOLS_H
-
+#include <cstdlib>
 #include <vector>
 #include <string>
 #include <sys/types.h>
@@ -13,6 +13,7 @@
 #include <algorithm>
 #include <iomanip> 
 #include <string.h>//strtok from C
+#include <set>
 //#define INF 999999999
 
 int Round(double r);
@@ -37,4 +38,5 @@ int hasIntersectionDouble(double x11, double y11, double x12, double y12, double
 double direction(std::pair<double,double> pi, std::pair<double, double> pj, std::pair<double, double> pk);
 bool findFile(std::string filename);
 void strToVec(std::vector<int> &key, std::string &ss);
+void createKeys(std::vector<int> &key, int Kind, int num);
 #endif

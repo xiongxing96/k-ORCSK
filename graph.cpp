@@ -402,7 +402,7 @@ void Graph::set_nodeKEYS_NodesBit(string filename){
         unordered_map<int,int>ma;
         KEYS.push_back(ma);
         while(fp >> nid >> x >> y >> ss){
-        ///	cout<<nid<<" "<<ss<<endl;
+        	// cout<<nid<<" "<<ss<<endl;
                 char str[100]; //according to the keywordstr.length (20*4)
                 strcpy(str,ss.c_str());
                 const char * split = ",";
@@ -1004,4 +1004,3 @@ int Graph::readUSCoor(string filename)
 
 	return 0;
 }
-

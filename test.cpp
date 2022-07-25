@@ -138,53 +138,45 @@
 
 // }
 int main(){
-	string keysFile = "./map/data_cal/sub/cal_sub_keys_5_100.node";	//keys file
-	string graphFile = "./map/USA-road-d.CAL.gr";			//graph file
-	const char *indexFile ="./map/data_cal/h2h/cal_sub.index";	//H2H index file
-	const char *edgeFile ="./map/data_cal/h2h/cal_sub.edge";	//edge file(graph file same)
+	// string keysFile = "./map/data_cal/sub/cal_sub_keys_5_100.node";	//keys file
+	// string graphFile = "./map/USA-road-d.CAL.gr";			//graph file
+	// const char *indexFile ="./map/data_cal/h2h/cal_sub.index";	//H2H index file
+	// const char *edgeFile ="./map/data_cal/h2h/cal_sub.edge";	//edge file(graph file same)
 
-	Graph g = Graph(graphFile);
-	g.set_nodeKEYS_NodesBit(keysFile);
-	g.Init_H2H_Index(indexFile, edgeFile);
+	// Graph g = Graph(graphFile);
+	// g.set_nodeKEYS_NodesBit(keysFile);
+	// g.Init_H2H_Index(indexFile, edgeFile);
 	
-	cout << "--------> this is for test:"<< endl;
-	ofstream oufile("./testData/res100.txt");
-	srand (time(NULL));
-	int ID1, ID2;
-	int num = 0, dist = 0, Lon = 15e5;
+	// cout << "--------> this is for test:"<< endl;
+	// srand (time(NULL));
+	// int ID1, ID2;
+	// int num = 0, dist = 0, Lon = 15e5;
 
-	// while(num<1000){
-	// 	num++;
-	// 	do
-	// 	{
-	// 		//nodeid in [3,1064] because of INF value by vSPTDistance
-	// 		ID1 = rand() % (g.nodeNum-5) + 3; 
-	// 		ID2 = rand() % (g.nodeNum-5) + 3;
-	// 		// dist = g.distanceQuery(ID1+1, ID2+1);
-	// 	}while(ID1 == ID2 || g.vbISO[ID1] || g.vbISO[ID2] || ID1<3 || ID2<3 ); 
+	// vector<int>querykey;
+	// string ss = "12,45,23,56,89";
+	// strToVec(querykey,ss);	//trans
+	// int k = 10;   
+	// vector<int> kResults;
+	// vector<int> Result;
+	// kResults.reserve(k);
+	// vector<vector<int> >vkPath; 
+	// kResults.clear();
+	// vkPath.clear();
+
+	// // while(num < 100){
+	// 	// num ++;
+	// do
+	// {
+	// 	//nodeid in [3,1064] because of INF value by vSPTDistance
+	// 	ID1 = rand() % (g.nodeNum-5) + 3; 
+	// 	ID2 = rand() % (g.nodeNum-5) + 3;
 	// 	dist = g.distanceQuery(ID1+1, ID2+1);
-	// 	Lon = max(dist,Lon);
-	// }
-
-	while(num < 100){
-		num ++;
-	do
-	{
-		//nodeid in [3,1064] because of INF value by vSPTDistance
-		ID1 = rand() % (g.nodeNum-5) + 3; 
-		ID2 = rand() % (g.nodeNum-5) + 3;
-		dist = g.distanceQuery(ID1+1, ID2+1);
-	}while(ID1 == ID2 || g.vbISO[ID1] || g.vbISO[ID2] || ID1<3 || ID2<3 || dist > Lon*0.5 );
-
-	// Lon = min(Lon, g.distanceQuery(ID1 + 1, ID2 + 1));
-	// cout << g.distanceQuery(ID1+1, ID2+1)<<endl;
-	// cout  << "ID1:" << ID1 << "\tID2:" << ID2 << endl; 
-	oufile << ID1 <<"\t"<< ID2 << "\t" << dist << endl;
-	}
-
-	// cout << "max Lon = "<< Lon << endl;
-	// cout << g.RSP[1].size() << endl;
-	oufile.close();
-
+	// }while(ID1 == ID2 || g.vbISO[ID1] || g.vbISO[ID2] || ID1<3 || ID2<3 || dist > Lon*0.5 );
  
+ // 	g.DAPrune(ID1, ID2, k, querykey, kResults, vkPath);
+ // 	for(auto p:kResults){
+ // 		cout<<p<<":"<<endl;
+ // 		// for()
+ // 	}
+// }
 }

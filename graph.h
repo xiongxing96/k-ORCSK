@@ -27,7 +27,7 @@
 using namespace std;
 using namespace benchmark; 
 
-static const int KIND = 100;	//the number of keywords kind
+static const int KIND = 200;	//the number of keywords kind
 
 typedef struct COMPARENODE
 {
@@ -171,17 +171,18 @@ public:
 	void Init_H2H_Index(const char *index, const char* graph);
 	int H2HPath(int ID1, int ID2, vector<int>& vPath, vector<int>& vPathEdge);	
 		
-	// DAmrrp
 	int eKSPNew(int ID1, int ID2, int k, vector<int>& query,vector<int>& kResults, vector<vector<int> >& vkPath);   
 	void SPT(int root, vector<int>& vSPTDistance, vector<int>& vSPTParent, vector<int>& vSPTParentEdge, vector<vector<int> >& vSPT);
 
 	void FindRepeatedPath(vector<vector<int> >& vvPath);
-	int PruneRepeatedPoiPath(vector<int>& bestpath, vector<int>& bestpoi);
+	int PruneRepeatedPoiPath(vector<int> bestpath, vector<int>& bestpoi);
 	int PruneRepeatedPoiPath(vector<int> bestpath);
-	int DAPrune(int ID1, int ID2, int k, vector<int>& query, vector<int>& kResults, vector<vector<int> >& vkPath);
+	int DAPrune(int ID1, int ID2, int k, vector<int>& query, vector<int>& kResults, vector<vector<int> >& vkPath, vector<int>& kPs, vector<vector<int>>& vkPs);
 	int DA(int ID1, int ID2, int k, vector<int>& query, vector<int>& kResults, vector<vector<int> >& vkPath);
 	int FindPNN(int deviation,int t, bitset<KIND> &vPathBit, pair<int,int> &PNN );
 	int ComputeLB(vector<int> &vpath, bitset<KIND> &vpathposBit, int pos);
+	float ComputeSim(vector<int> A, vector<int> B);
+	bool CompteSkyline(vector<int> &A, int disA, vector<int> &B, int disB);
 };
 
 

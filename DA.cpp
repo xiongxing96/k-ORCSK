@@ -123,11 +123,6 @@ int Graph::DA(int ID1, int ID2, int k, vector<int>& query, vector<int>& kResults
         bitset<KIND>bestBit(QueryBit);
         bestBit &= (vPathBit[topPathID] | vSPTBit[vPathParent[topPathID]]); 
 		if(bestBit.count()==QueryBit.count() && vPathLB[topPathID]==0){
-			// bestPath = vvPathCandidate[topPathID];
-			// cout<<"........................qPath.size() = "<<qPath.size()<<endl;
-			// cout << "ComputeLB Time:" << time_lb.count() << endl;
-			// cout << "UB = "<<UB<<endl;
-			// return vDistance[topPathID]+vPathLB[topPathID];
 			int size = kResults.size();
 			int result = PruneRepeatedPoiPath(vvPathCandidate[topPathID]);
 			if(kResults.back()==result)
@@ -136,30 +131,18 @@ int Graph::DA(int ID1, int ID2, int k, vector<int>& query, vector<int>& kResults
 			vkPath.push_back(vvPathCandidate[topPathID]);
 			continue;
 		}
-		// prune1 by UB
-		// if(vDistance[topPathID]+vPathLB[topPathID] > UB)continue;
-		
+	
 		// deviate by path deviation 
 			int pos = vPathParentPos[topPathID]+1;
 			int predist = 0; //compute predist before pos; 
 			bitset<KIND>_tmpBit(vPathBit[topPathID]);
-			// if(pos>1){
-			// 	for(int i=0;i<pos;i++){
-			// 		predist+=distanceQuery(vvPathCandidate[topPathID][i]+1,vvPathCandidate[topPathID][i+1]+1);	
-			// 	}
-			// }
-
-			// cout<<"dist to pos = "<<predist<<endl;
 			int pnn=-1;
 			for(int i = pos-1;i < vvPathCandidate[topPathID].size()-1;i++){
 				vPath.clear();
 				int deviation = vvPathCandidate[topPathID][i];
-
 				int numkey = _tmpBit.count(); //curentpos  keybit
 				_tmpBit|=(QueryBit & NodesBit[deviation]);
 				//	accumulate predist if deviate from pos then nodo else do++
-				// if(i>0)predist+=distanceQuery(vvPathCandidate[topPathID][i-1]+1,vvPathCandidate[topPathID][i]+1);
-				
 
 				//	<1>insert p[ID1,pos]
 				vector<int>tmPath(vvPathCandidate[topPathID].begin(),vvPathCandidate[topPathID].begin()+i);
@@ -169,7 +152,6 @@ int Graph::DA(int ID1, int ID2, int k, vector<int>& query, vector<int>& kResults
 				pair<int,int> TwoPNN(-1,-1);
 				int PNNdist = FindPNN(deviation ,ID2,_tmpBit, TwoPNN);
 				PNN = TwoPNN.first;
-
 				// Prune2, prune the path, compare with before deviation PNN 
 				// cout<<PNN<<" "<<pnn<<" "<<numkey<<" "<<_tmpBit.count()<<endl;
 				// if(PNN == pnn && numkey==_tmpBit.count())continue;
@@ -208,11 +190,7 @@ int Graph::DA(int ID1, int ID2, int k, vector<int>& query, vector<int>& kResults
 				t2 = std::chrono::high_resolution_clock::now();
 				time_span = std::chrono::duration_cast<std::chrono::duration<double> >(t2 - t1);
 				time_lb+=time_span;
-				
-				// if(QueryBit.count()-tmpBit.count() <= 1){
-				// 	UB = min(UB,tmpdist + tmplb);
-				// }
-				
+
 				vvPathCandidate.push_back(tmPath);
 				vPathParent.push_back(PNN);
 				vPathParentPos.push_back(tmpos);
@@ -222,7 +200,6 @@ int Graph::DA(int ID1, int ID2, int k, vector<int>& query, vector<int>& kResults
 				qPath.update(vvPathCandidate.size()-1,tmpdist+tmplb);
 		}
 	} 
-	// return -1;
 	return qPath.size();
 }
 

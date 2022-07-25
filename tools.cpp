@@ -409,3 +409,18 @@ void strToVec(std::vector<int> &key, std::string &ss)
         		p = strtok(NULL,split);
         }
 } 
+void createKeys(std::vector<int> &key, int Kind, int num)
+{
+	//srand (time(NULL));
+	set<int>tmp;
+	key.clear();
+	while(tmp.size()<num){
+		int k = rand()%Kind;
+		if(k==0)continue;
+		tmp.insert(k);
+	}
+	for(auto t:tmp){
+		key.push_back(t);
+	}
+
+}
